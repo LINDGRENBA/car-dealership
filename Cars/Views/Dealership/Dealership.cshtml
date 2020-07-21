@@ -1,1 +1,9 @@
+@using Cars.Models;
+@using System.Collections.Generic;
 <h1>Dealership</h1>
+<ul>
+  @foreach (Car element in Model)
+  {
+      <li>@element.MakeModel</li>
+  }
+</ul>

@@ -3,9 +3,7 @@ using System.Collections.Generic;
 namespace Cars.Models {
   public class Car
   {
-    private string _makeModel;
-    private int _price;
-    private int _miles;
+    private static List<Car> _instances = new List<Car> {};
 
     public string MakeModel{ get; set;}
     public int Price { get; set;}
@@ -16,6 +14,15 @@ namespace Cars.Models {
       MakeModel = makeModel;
       Price = price;
       Miles = miles;
+      _instances.Add(this);
+    }
+    public static List<Car> GetAll()
+    {
+      return _instances;
+    }
+    public static void ClearAll()
+    {
+      _instances.Clear();
     }
 
     public static string MakeSound(string sound)
@@ -23,28 +30,10 @@ namespace Cars.Models {
       return "Our cars sound like " + sound;
     }
 
-    public string GetMakeModel()
-    {
-      return _makeModel;
-    }
 
-    public int GetPrice()
-    {
-      return _price;
-    }
-
-    public void SetPrice(int newPrice)
-    {
-      _price = newPrice;
-    }
-
-    public int GetMiles()
-    {
-      return _miles;
-    }
     public bool WorthBuying(int maxPrice)
     {
-      return (_price < maxPrice); //will return true or false
+      return (Price < maxPrice); //will return true or false
     }
   }
 }
